@@ -6,11 +6,7 @@ def connScan(tgtHost, tgtPort):
 	try: 
 		socket = socket(AF_INET, SOCK_STREAM)
 		socket.connect((tgtHost, tgtPortS))
-		socket.send('Hello')
-		results = socket.recv(100)
-		print('TCP Open: ' + str(tgtPortS) + '\n')
-		print('Results: ' + str(results))
-		exit(0)
+		print('TCP Open: ' + str(tgtPortS))
 	except:
 		print('TCP Closed: ' + str(tgtPortS))
 
@@ -26,11 +22,8 @@ def portScan(tgtHost, tgtPort):
 	except:
 		print('Scan Results for: ' + tgtIP)
 	setdefaulttimeout(1)
-	i = int(tgtPort)
-	while i < 65535:
-		print('Scanning Port: ' + tgtPort)
-		connScan(tgtHost, int(i))
-		i = i + 1
+	print('Scanning Port: ' + tgtPort)
+	connScan(tgtHost, int(tgtPort))
 
 def main():
 	parser=optparse.OptionParser('usage %prog –H '+'<target host> -p <target port>')
@@ -44,4 +37,4 @@ def main():
 		exit(0)
 	portScan(tgtHost, str(tgtPort))
 if __name__ == '__main__':
-	main()
+main()
