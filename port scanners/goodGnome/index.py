@@ -13,6 +13,7 @@ def connScan(tgtHost, tgtPort):
 		print('tcp closed: ' + str(tgtPort))
 	except:
 		print('tcp closed: ' + str(tgtPort))
+
 def portScan(tgtHost, tgtPort):
 	try:
 		tgtIP = gethostbyname(tgtHost)
@@ -27,6 +28,7 @@ def portScan(tgtHost, tgtPort):
 	setdefaulttimeout(1)
 	print('Scanning Port: ' + str(tgtPort))
 	connScan(tgtHost, int(tgtPort))
+
 def main():
 	parser = optparse.OptionParser('usage %prog -H ' + '<target host>' + '-p ' + '<port>')
 	parser.add_option('-H', dest='tgtHost', type="string", help="Specify Target Host")
@@ -34,7 +36,8 @@ def main():
 	(options, args) = parser.parse_args()
 	tgtHost = options.tgtHost
 	tgtPort = options.tgtPort
+	#if(tgtPort == None | tgtHost == None):
+	#	print(parser.usage)
 	portScan(tgtHost, tgtPort)
 if __name__ == '__main__':
 		main()
-
